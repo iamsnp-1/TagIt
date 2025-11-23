@@ -101,11 +101,16 @@ pip install -r requirements.txt
 ---
 
 #  Usage
+##  Generate synthetic Data
+
+```bash
+python generate_synthetic.py
+```
 
 ##  Preprocess Data
 
 ```bash
-python preprocess.py data/transactions.csv data/preprocessed.csv
+python preprocess.py
 ```
 
 ---
@@ -279,6 +284,7 @@ Visit:
 #  Team Diamonds
 
 Made with ❤️ for innovation.
+
 
 
 
