@@ -107,12 +107,6 @@ pip install -r requirements.txt
 python generate_synthetic.py
 ```
 
-##  Preprocess Data
-
-```bash
-python preprocess.py
-```
-
 ---
 
 #  Training the Transformer Model (DistilBERT + Tabular Features)
@@ -284,6 +278,7 @@ Visit:
 #  Team Diamonds
 
 Made with ❤️ for innovation.
+
 
 
 
