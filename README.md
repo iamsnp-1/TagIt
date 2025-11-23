@@ -1,4 +1,20 @@
 
+---
+
+# 🎨 TAGIT Branded ASCII Banner
+
+```
+████████╗ █████╗  ██████╗ ██╗████████╗
+╚══██╔══╝██╔══██╗██╔════╝ ██║╚══██╔══╝
+   ██║   ███████║██║  ███╗██║   ██║   
+   ██║   ██╔══██║██║   ██║██║   ██║   
+   ██║   ██║  ██║╚██████╔╝██║   ██║   
+   ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚═╝   ╚═╝   
+
+    🔖  TAGIT — Smart Labels for Smart Money
+```
+
+---
 # 🚀 TAGIT — AI Transaction Categorization System
 
 ### 🔖 Smart Labels for Smart Money  
@@ -69,35 +85,10 @@ TAGIT also includes a sleek Streamlit interface for real-time testing and CSV ba
 # 📂 Project Structure
 
 ```
-📦 TAGIT
-│
-├── EF/
-│   ├── preprocess.py
-│   ├── train_baseline.py
-│   ├── train_transformer.py
-│   ├── predict.py
-│   ├── predict_transformer.py
-│   ├── smart_predict.py
-│   ├── eval.py
-│   ├── app2.py
-│   ├── taxonomy.yaml
-│   └── generate_synthetic.py
-│
-├── data/
-│   └── sample_transactions.csv
-│
-├── models/ (ignored in git)
-│
-├── requirements.txt
-├── README.md
-└── .gitignore
-```
-
----
 
 # ⚙️ Installation
 
-### 1️⃣ Create virtual environment
+ 1️⃣ Create virtual environment
 
 ```
 python -m venv .venv
@@ -105,7 +96,7 @@ source .venv/bin/activate     # macOS/Linux
 .venv\Scripts\activate      # Windows
 ```
 
-### 2️⃣ Install dependencies
+ 2️⃣ Install dependencies
 
 ```
 pip install -r requirements.txt
@@ -115,18 +106,132 @@ pip install -r requirements.txt
 
 # 🛠️ Usage
 
+
 ## 🔧 Preprocess Data
 
 ```
-python EF/preprocess.py data/transactions.csv data/preprocessed.csv
+python preprocess.py data/transactions.csv data/preprocessed.csv
 ```
+
+---
+# 🔥 Training the Transformer Model (DistilBERT + Tabular Features)
+
+TAGIT uses a hybrid Transformer architecture that merges **DistilBERT embeddings** with **numeric features** (`amount`, `amount_bucket`, `weekday`, `month`) for superior classification accuracy.
+
+---
+
+## ✅ 1. Prepare Preprocessed Data
+
+```bash
+python preprocess.py data/transactions.csv data/preprocessed.csv
+```
+
+This generates:
+
+```
+merchant_clean
+merchant_token
+amount
+amount_bucket
+weekday
+month
+label
+```
+
+---
+
+## ✅ 2. Train the Transformer Model
+
+Run:
+
+```bash
+python train_transformer.py
+```
+
+This script will:
+
+- Load preprocessed data  
+- Tokenize merchant text using DistilBERT  
+- Train hybrid encoder (Transformer + Tabular MLP)  
+- Save all required model files  
+
+### 📦 Saved Artifacts
+
+| File | Purpose |
+|------|---------|
+| models/transformer_best.pt | Best model weights |
+| models/transformer_label_encoder.joblib | Encodes label strings |
+| models/transformer_scaler.joblib | Scales numeric features |
+| models/tokenizer/ | DistilBERT tokenizer |
+| models/transformer_metadata.joblib | Model metadata |
+
+---
+
+## ✅ 3. Predict Using Transformer
+
+```bash
+python predict_transformer.py
+```
+
+---
+
+## ✅ 4. Hybrid Mode (Baseline + Transformer)
+
+```bash
+python smart_predict.py
+```
+
+Logic:
+
+```
+if baseline_confidence >= 0.70:
+    use baseline
+else:
+    use transformer
+```
+
+Results saved to:
+
+```
+data/predictions_hybrid.csv
+```
+
+---
+
+## ✅ 5. Evaluate Transformer
+
+```bash
+python eval.py
+```
+
+Outputs macro/weighted F1, confusion matrix, per-label metrics.
+
+---
+
+## ⚡ GPU Acceleration (Optional but recommended)
+
+Install CUDA-enabled torch:
+
+```bash
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+```
+
+Verify:
+
+```python
+import torch
+print(torch.cuda.is_available())
+print(torch.cuda.get_device_name(0))
+```
+
+Training will **automatically** use GPU if available.
 
 ---
 
 ## ⚡ Train Baseline Model
 
 ```
-python EF/train_baseline.py
+python train_baseline.py
 ```
 
 Produces:
@@ -138,29 +243,10 @@ models/label_encoder.joblib
 
 ---
 
-## 🤖 Train Transformer Model (Optional)
-
-Requires GPU for speed:
-
-```
-python EF/train_transformer.py
-```
-
-Produces:
-
-```
-models/transformer_best.pt
-models/transformer_label_encoder.joblib
-models/transformer_scaler.joblib
-models/tokenizer/
-```
-
----
-
 ## 🔍 Predict (Baseline)
 
 ```
-python EF/predict.py
+python predict.py
 ```
 
 ---
@@ -168,7 +254,7 @@ python EF/predict.py
 ## 🧪 Evaluate
 
 ```
-python EF/eval.py
+python eval.py
 ```
 
 Outputs macro/weighted F1, per-class metrics.
@@ -178,87 +264,14 @@ Outputs macro/weighted F1, per-class metrics.
 # 📱 Streamlit App (TAGIT Dashboard)
 
 ```
-streamlit run EF/app2.py
+streamlit run app2.py
 ```
 
 Visit:  
 👉 http://localhost:8501
 
-### UI Overview
 
-```
-┌──────────────────────────────────────────────────────────┐
-│                    💸 TAGIT Dashboard                    │
-├──────────────────────────────────────────────────────────┤
-│ 🔍 Enter Transaction Text                                │
-│ [ UPI/ROHAN@OKHDFC/9843 ] [ Predict ]                    │
-│ ✔ Category: P2P Transfer                                 │
-│ ✔ Confidence: 0.93                                       │
-│                                                          │
-├──────────────────────────────────────────────────────────┤
-│ 📤 Upload CSV for Bulk Prediction                        │
-│ [ Choose File ]                                          │
-│                                                          │
-│ merchant            predicted_label    confidence        │
-│ -----------------------------------------------------    │
-│ AMZN MUMBAI         Shopping            0.88             │
-│ HPCL PUNE           Fuel                0.91             │
-└──────────────────────────────────────────────────────────┘
-```
-
----
-
-# 🎨 TAGIT Branded ASCII Banner
-
-```
-████████╗ █████╗  ██████╗ ██╗████████╗
-╚══██╔══╝██╔══██╗██╔════╝ ██║╚══██╔══╝
-   ██║   ███████║██║  ███╗██║   ██║   
-   ██║   ██╔══██║██║   ██║██║   ██║   
-   ██║   ██║  ██║╚██████╔╝██║   ██║   
-   ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚═╝   ╚═╝   
-
-    🔖  TAGIT — Smart Labels for Smart Money
-```
-
----
-
-# 📦 Requirements
-
-```
-pandas==2.1.2
-numpy==1.26.4
-scikit-learn==1.3.2
-matplotlib==3.8.1
-joblib==1.3.2
-pyyaml==6.0
-
-transformers==4.34.0
-torch==2.2.0
-
-streamlit==1.24.0
-
-tqdm==4.66.1
-```
-
----
-
-# 🔥 .gitignore
-
-```
-__pycache__/
-*.pyc
-.venv/
-models/
-data/*.csv
-!data/sample_transactions.csv
-tokenizer/
-*.pt
-```
-
----
-
-# 🏆 Hackathon Highlights
+#  Highlights
 
 - ⚡ Real-time baseline inference  
 - 🤖 High-accuracy Transformer model  
@@ -270,7 +283,10 @@ tokenizer/
 
 ---
 
-# 📬 Team TAGIT
+# 📬 Team Diamonds
 
 Made with ❤️ for innovation.
+
+
+
 
