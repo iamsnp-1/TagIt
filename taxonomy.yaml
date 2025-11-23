@@ -1,0 +1,25 @@
+categories:
+  - id: 0
+    slug: coffee_dining
+    name: "Coffee / Dining"
+    aliases: ["coffee","cafe","starbucks","barista","cafe coffee day","ccd"]
+
+  - id: 1
+    slug: shopping
+    name: "Shopping"
+    aliases: ["amazon","flipkart","myntra","ajio","shopping","retail"]
+
+  - id: 2
+    slug: fuel
+    name: "Fuel"
+    aliases: ["shell","hp petrol","indian oil","petrol","fuel","gas"]
+
+  - id: 3
+    slug: groceries
+    name: "Groceries"
+    aliases: ["dmart","bigbasket","reliance fresh","grocery","supermarket"]
+
+  - id: 4
+    slug: travel
+    name: "Travel"
+    aliases: ["uber","ola","irctc","flight","travel","rail"]
