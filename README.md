@@ -1,7 +1,7 @@
 
 ---
 
-# 🎨 TAGIT 
+#  TAGIT 
 
 ```
 ████████╗ █████╗  ██████╗ ██╗████████╗
@@ -11,18 +11,18 @@
    ██║   ██║  ██║╚██████╔╝██║   ██║   
    ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚═╝   ╚═╝   
 
-    🔖  TAGIT — Smart Labels for Smart Money
+      TAGIT — Smart Labels for Smart Money
 ```
 
 ---
-# 🚀 TAGIT — AI Transaction Categorization System
+#  TAGIT — AI Transaction Categorization System
 
-### 🔖 Smart Labels for Smart Money  
+###  Smart Labels for Smart Money  
 A hybrid AI system that classifies financial transactions using **TF‑IDF + Logistic Regression**, **DistilBERT Transformers**, and a clean **Streamlit UI**.
 
 ---
 
-# 🌟 Overview
+#  Overview
 
 TAGIT intelligently categorizes messy transaction strings like:
 
@@ -36,15 +36,15 @@ TAGIT intelligently categorizes messy transaction strings like:
 
 It uses a two‑stage hybrid pipeline:
 
-- ⚡ **Baseline Model (Fast):** TF‑IDF + Logistic Regression  
-- 🤖 **Transformer Model (Accurate):** DistilBERT + Tabular Features  
-- 🔀 **Hybrid Router:** If baseline is confident → use baseline, else fallback to powerful Transformer  
+-  **Baseline Model (Fast):** TF‑IDF + Logistic Regression  
+-  **Transformer Model (Accurate):** DistilBERT + Tabular Features  
+-  **Hybrid Router:** If baseline is confident → use baseline, else fallback to powerful Transformer  
 
 TAGIT also includes a sleek Streamlit interface for real-time testing and CSV batch predictions.
 
 ---
 
-# 🧠 Architecture Diagram
+#  Architecture Diagram
 
 ```
                    ┌────────────────────────────┐
@@ -82,9 +82,9 @@ TAGIT also includes a sleek Streamlit interface for real-time testing and CSV ba
 
 ---
 
-# ⚙️ Installation
+#  Installation
 
-### 1️⃣ Create virtual environment
+### 1️ Create virtual environment
 
 ```bash
 python -m venv .venv
@@ -92,7 +92,7 @@ source .venv/bin/activate     # macOS/Linux
 .venv\Scripts\activate      # Windows
 ```
 
-### 2️⃣ Install dependencies
+### 2️ Install dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -100,9 +100,9 @@ pip install -r requirements.txt
 
 ---
 
-# 🛠️ Usage
+#  Usage
 
-## 🔧 Preprocess Data
+##  Preprocess Data
 
 ```bash
 python preprocess.py data/transactions.csv data/preprocessed.csv
@@ -110,13 +110,13 @@ python preprocess.py data/transactions.csv data/preprocessed.csv
 
 ---
 
-# 🔥 Training the Transformer Model (DistilBERT + Tabular Features)
+#  Training the Transformer Model (DistilBERT + Tabular Features)
 
 TAGIT uses a hybrid Transformer architecture that merges **DistilBERT embeddings** with **numeric features** (`amount`, `amount_bucket`, `weekday`, `month`) for superior classification accuracy.
 
 ---
 
-## ✅ 1. Prepare Preprocessed Data
+##  1. Prepare Preprocessed Data
 
 ```bash
 python preprocess.py data/transactions.csv data/preprocessed.csv
@@ -136,7 +136,7 @@ label
 
 ---
 
-## ✅ 2. Train the Transformer Model
+##  2. Train the Transformer Model
 
 Run:
 
@@ -151,7 +151,7 @@ This script will:
 - Train hybrid encoder (Transformer + Tabular MLP)  
 - Save all required model files  
 
-### 📦 Saved Artifacts
+###  Saved Artifacts
 
 | File | Purpose |
 |------|---------|
@@ -163,7 +163,7 @@ This script will:
 
 ---
 
-## ✅ 3. Predict Using Transformer
+##  3. Predict Using Transformer
 
 ```bash
 python predict_transformer.py
@@ -171,7 +171,7 @@ python predict_transformer.py
 
 ---
 
-## ✅ 4. Hybrid Mode (Baseline + Transformer)
+##  4. Hybrid Mode (Baseline + Transformer)
 
 ```bash
 python smart_predict.py
@@ -194,7 +194,7 @@ data/predictions_hybrid.csv
 
 ---
 
-## ✅ 5. Evaluate Transformer
+##  5. Evaluate Transformer
 
 ```bash
 python eval.py
@@ -204,7 +204,7 @@ Outputs macro/weighted F1 and per‑label metrics.
 
 ---
 
-## ⚡ GPU Acceleration (Optional but recommended)
+##  GPU Acceleration (Optional but recommended)
 
 Install CUDA‑enabled torch:
 
@@ -222,7 +222,7 @@ print(torch.cuda.get_device_name(0))
 
 ---
 
-## ⚡ Train Baseline Model
+##  Train Baseline Model
 
 ```bash
 python train_baseline.py
@@ -237,7 +237,7 @@ models/label_encoder.joblib
 
 ---
 
-## 🔍 Predict (Baseline)
+##  Predict (Baseline)
 
 ```bash
 python predict.py
@@ -245,7 +245,7 @@ python predict.py
 
 ---
 
-## 🧪 Evaluate
+##  Evaluate
 
 ```bash
 python eval.py
@@ -253,32 +253,33 @@ python eval.py
 
 ---
 
-# 📱 Streamlit App (TAGIT Dashboard)
+#  Streamlit App (TAGIT Dashboard)
 
 ```bash
 streamlit run app2.py
 ```
 
 Visit:  
-👉 http://localhost:8501
+ http://localhost:8501
 
 ---
 
-# ⭐ Highlights
+#  Highlights
 
-- ⚡ Real-time baseline inference  
-- 🤖 High-accuracy Transformer model  
-- 🔀 Smart hybrid confidence routing  
-- 🎨 Beautiful Streamlit dashboard  
-- 🧹 Clean architecture & modular design  
-- 🧩 Easy to extend  
-- 📊 Professional metrics (macro/weighted F1)
+-  Real-time baseline inference  
+-  High-accuracy Transformer model  
+-  Smart hybrid confidence routing  
+-  Beautiful Streamlit dashboard  
+-  Clean architecture & modular design  
+-  Easy to extend  
+- Professional metrics (macro/weighted F1)
 
 ---
 
-# 📬 Team Diamonds
+#  Team Diamonds
 
 Made with ❤️ for innovation.
+
 
 
 
