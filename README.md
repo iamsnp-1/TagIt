@@ -82,23 +82,19 @@ TAGIT also includes a sleek Streamlit interface for real-time testing and CSV ba
 
 ---
 
-# 📂 Project Structure
-
-```
-
 # ⚙️ Installation
 
- 1️⃣ Create virtual environment
+### 1️⃣ Create virtual environment
 
-```
+```bash
 python -m venv .venv
 source .venv/bin/activate     # macOS/Linux
 .venv\Scripts\activate      # Windows
 ```
 
- 2️⃣ Install dependencies
+### 2️⃣ Install dependencies
 
-```
+```bash
 pip install -r requirements.txt
 ```
 
@@ -106,14 +102,14 @@ pip install -r requirements.txt
 
 # 🛠️ Usage
 
-
 ## 🔧 Preprocess Data
 
-```
+```bash
 python preprocess.py data/transactions.csv data/preprocessed.csv
 ```
 
 ---
+
 # 🔥 Training the Transformer Model (DistilBERT + Tabular Features)
 
 TAGIT uses a hybrid Transformer architecture that merges **DistilBERT embeddings** with **numeric features** (`amount`, `amount_bucket`, `weekday`, `month`) for superior classification accuracy.
@@ -204,13 +200,13 @@ data/predictions_hybrid.csv
 python eval.py
 ```
 
-Outputs macro/weighted F1, confusion matrix, per-label metrics.
+Outputs macro/weighted F1 and per‑label metrics.
 
 ---
 
 ## ⚡ GPU Acceleration (Optional but recommended)
 
-Install CUDA-enabled torch:
+Install CUDA‑enabled torch:
 
 ```bash
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
@@ -224,13 +220,11 @@ print(torch.cuda.is_available())
 print(torch.cuda.get_device_name(0))
 ```
 
-Training will **automatically** use GPU if available.
-
 ---
 
 ## ⚡ Train Baseline Model
 
-```
+```bash
 python train_baseline.py
 ```
 
@@ -245,7 +239,7 @@ models/label_encoder.joblib
 
 ## 🔍 Predict (Baseline)
 
-```
+```bash
 python predict.py
 ```
 
@@ -253,32 +247,31 @@ python predict.py
 
 ## 🧪 Evaluate
 
-```
+```bash
 python eval.py
 ```
-
-Outputs macro/weighted F1, per-class metrics.
 
 ---
 
 # 📱 Streamlit App (TAGIT Dashboard)
 
-```
+```bash
 streamlit run app2.py
 ```
 
 Visit:  
 👉 http://localhost:8501
 
+---
 
-#  Highlights
+# ⭐ Highlights
 
 - ⚡ Real-time baseline inference  
 - 🤖 High-accuracy Transformer model  
 - 🔀 Smart hybrid confidence routing  
 - 🎨 Beautiful Streamlit dashboard  
 - 🧹 Clean architecture & modular design  
-- 🧩 Easy to extend: add new merchants, new categories  
+- 🧩 Easy to extend  
 - 📊 Professional metrics (macro/weighted F1)
 
 ---
@@ -286,7 +279,5 @@ Visit:
 # 📬 Team Diamonds
 
 Made with ❤️ for innovation.
-
-
 
 
